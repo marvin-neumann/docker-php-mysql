@@ -1,5 +1,6 @@
 FROM php:5.6-apache
 
+# Volume mountpoint
 WORKDIR "/src"
 
 # Install php extensions
@@ -10,18 +11,15 @@ RUN docker-php-ext-install pdo pdo_mysql mysqli \
 # Workaround for write permission on write to volumes
 RUN usermod -u 1000 www-data
 
-# Enable Apache module
-RUN a2enmod rewrite
+# Enable Apache modules
+RUN a2enmod rewrite \
+    && a2enmod headers \
+    && a2enmod expires
 
-# Enable Apache module
-RUN a2enmod headers
-
-# Enable Apache module
-RUN a2enmod expires
-
-# Configure Apache VHOSTS
+# Configure Apache vhost
 ADD sites-available/mysite.com.conf /etc/apache2/sites-available
-RUN a2ensite mysite.com.conf
+RUN a2ensite mysite.com.conf \
+ && a2dissite 000-default
 
-# Activate Apache modules
+# Activate Apache settings
 RUN service apache2 restart
