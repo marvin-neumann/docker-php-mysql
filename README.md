@@ -1,7 +1,7 @@
 # LAMP using the official images:  
  - PHP 5.6 + Apache 2.4
  - MySQL 5.7
-This is an old php version, because im 
+
 Before running `docker-compose up` edit your source path and ip address in the .env file. 
 
 Some basic docker commands: 
