@@ -7,7 +7,7 @@ Before running `docker-compose up` edit your source path and ip address in the .
 Some basic docker commands: 
 - `docker-compose up --build` : build and start containers  
 - `docker-compose down` : stop containers  
-- `docker purge -a -f`: delete all unused images and volumes  
+- `docker system prune -a -f`: delete all unused images and volumes  
 
 ## PhpStorm settings for Xdebug 
 
